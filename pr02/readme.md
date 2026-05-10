@@ -1,94 +1,12 @@
 # Praktikum 02 - Git Branches | Gradle & JUnit | JUnit Tests
 
-## 1. Git Branches - Git-Spiel
-
-### 1.1 Ändern Sie eine Datei, die im Branch end nicht verändert wurde.
-
-zum branch `end` wechseln:
-
-```sh
-git switch end
-```
-
-alle Dateien im Branch `end` anzeigen und alle Dateien, die zwischen den beiden Branches unterschiedlich sind:
-```sh 
-git ls-tree -r end --name-only
-
-git diff --name-only master end
-```
-
-Ergebnis:
-```sh
-.editorconfig
-.gitattributes
-.gitignore
-CITATION.cff
-LICENSE.md
-README.md
-hero.md
-metadata.yml
-questlog.md
-rucksack.md
-shopkeeper.md
-stats.md
-```
-
-```sh
-questlog.md
-rucksack.md
-stats.md
-```
-
-Zurück zu ``master`` wechseln und Datei verändern und `end` in `master` mergen:
-```sh
-git diff master end
-nano hero.md
-git add hero.md
-git commit -m "tag 04.6"
-git merge end
-```
-Der Merge läuft glatt durch und muss mit einer Merge-Commit-Message versehen werden.
-
-### 1.2 Ändern Sie nun eine Datei, die auch im Branch end verändert wurde. Achten Sie dabei darauf, die Änderung an einer anderen Stelle in der Datei vorzunehmen. 
-
-Es entsteht ein Merge-Konflikt.
-
-- Wenn die Änderung zb. nur eine Zeile unter oder über der Zeile, die in 'end' geändert wurde vorgenommen wird, muss der Konflikt manuell gelöst werden. 
-- Ist die Änderung "weiter entfernt", wird der Konflikt automatisch von Git gelöst.
+## 1. [Git Branches - Git-Spiel](a01.md)
 
 
-### 1.3 a) Wie (2), aber ändern Sie nun eine Stelle, die auch im Branch end verändert wurde.  Was passiert, wenn die Änderung im master anders ist als in end?
 
-Es entsteht einen Merge-Konflikt. Es muss entweder manuell die gewünschte Änderung in der betreffenden Datei gewählt werden oder mittels `git merge --ours/--theirs <file>` die gewünschte änderung gewählt werden
-```sh
-git merge --ours rucksack.md 
-```
-... um die Änderung auf dem eigenen Branch zu übernehmen.
-
-
-### 1.3 b) Was passiert, wenn die Änderung im master identisch zu der in end ist?
-
-Merge ist einfach möglich, Merge-commit-message eingeben und fertig...
-
-
-### 1.4 Wie (2), aber setzen Sie bitte den Branch end auf die Spitze von master, bevor Sie end in master mergen.
-
-Keine Verändungen verglichen mit (2)???
-
-```sh
-git switch end
-
-
-```
-
-git clone https://github.com/Programmiermethoden-CampusMinden/prog2_ybel_gitquest
+## 2. [Katzen-Café](a02.md)
 
 
 
 
-## 2. Katzen-Café
-
-
-
-
-## 3. Remotes und CI-Pipeline
+## 3. [Remotes und CI-Pipeline](a03.md)
