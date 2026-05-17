@@ -1,0 +1,177 @@
+@startuml
+'------------------- GAMEENGINE
+class GameEngine {
+  - gameState: GameState
+  + GameEngine(level: Level)
+  + GameState state()
+  + setGamePanel(panel: GamePanel) : void
+  + update(d: Direction) : void
+  + tick() : void
+}
+GameEngine *--> GameState
+GameEngine ..> Level
+GameEngine --> GamePanel
+GameEngine ..> Direction
+
+
+'------------------- GAMESTATE
+class GameState {
+/'
+  - level : Level
+  - snake : Snake
+  - pins : List<Pin>
+  - status : Status
+  - pendingDirection : Direction
+'/
+
+  + GameState(level: Level, snake: Snake, pins: List<Pin>, status: Status, pendingDirection: Direction)
+  + level(): Level
+  + snake(): Snake
+  + pins(): List<Pin>
+  + status(): Status
+  + pendingDirection(): Direction
+  + tick(): GameState
+}
+
+'------------------- GAMEPANEL
+class GamePanel {
+  - state: GameState
+  - renderer: GameRenderer
+  - gameEngine: GameEngine
+  + GamePanel(initialState: GameState, renderer: GameRenderer)
+  + update(newState: GameState): void
+  + setGameEngine(engine: GameEngine): void
+  - setupKeyBindings(direction: Direction, keyCodes: Iterable<Integer>): void
+}
+
+GamePanel --> GameState
+GamePanel --> GameEngine
+GamePanel ..> Direction
+
+
+
+'------------------- STATUS
+enum Status {
+  RUNNING
+  WON
+  LOST_SELF_COLLISION
+  LOST_OUT_OF_BOUNDS
+  + isRunning(): boolean
+}
+GameState --> Level
+GameState --> Snake
+GameState "1"-->"*" Pin
+GameState --> Direction
+GameState --> Status
+
+
+'------------------- LEVEL
+class Level{
+  - width: int
+  - height: int
+  - cells: CellType[][]
+  - pins: List<Pin>
+  - snakeStart: Position
+
+  + Level(width: int, height: int, cells: CellType[][], pins: List<Pin>, snakeStart: Position)
+  + isInside(pos: Position): boolean
+  + cellAt(pos: Position): CellType
+  + width(): int
+  + height(): int
+  + cells(): CellType[][]
+  + pins(): List<Pin>
+  + snakeStart(): Position
+}
+Level --> CellType
+Level --> Pin
+Level --> Position
+
+
+'------------------- PIN
+class Pin {
+  - position: Position
+  - state: State
+  - activationDirection: Direction
+  + Pin(position: Position, state: State, activationDirection: Direction)
+  + withState(newState: State): Pin
+  + position(): Position
+  + state(): State
+  + activationDirection(): Direction
+}
+
+enum State {
+  LOW
+  HIGH
+  + isSet(): boolean
+}
+
+Pin +-- State
+Pin --> Position
+Pin --> Direction
+
+
+'------------------- POSITION
+class Position {
+  - x: int
+  - y: int
+  + Position(x: int, y: int)
+  + x(): int
+  + y(): int
+}
+
+'------------------- SNAKE
+
+class Snake {
+  - body: List<Position>
+  + Snake(body: List<Position>)
+  + head(): Position
+  + body(): List<Position>
+  + nextHead(d: Direction): Position
+  + occupies(position: Position): boolean
+  + grow(d: Direction): Snake
+}
+
+Snake "1" --> "*" Position
+Snake ..> Direction
+
+'------------------- DIRECTION
+enum Direction {
+
+  UP
+  DOWN
+  LEFT
+  RIGHT
+  NONE
+  + applyTo(pos: Position): Position
+  + oppositeDirection(): Direction
+}
+
+Direction ..> Position
+
+'------------------- CELLTYPE
+enum CellType {
+
+  EMPTY
+  WALL
+  PIN_SLOT
+}
+
+'------------------- formatting
+GameEngine -[hidden]down-> GameState
+
+/'
+Level -[hidden]down-> Pin 
+Pin -[hidden]down-> Position 
+Position -[hidden]down-> Snake 
+'/
+
+together {
+  class CellType
+  class Direction
+  class Level
+  class Pin
+  class Position
+  class Snake
+}
+
+@enduml

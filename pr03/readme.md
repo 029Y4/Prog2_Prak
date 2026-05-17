@@ -6,4 +6,6 @@
 
 ## 2. [LockSnake](https://github.com/029Y4/prog2_ybel_locksnake)
 
+### A2.1 **Rudimentäres** Klassendiagramm mit den wichtigsten Klassen für Locksnake
 
+![Klassendiagramm LockSnake](pr03\img\Locksnake_class_diagram_rudimentary.png)
