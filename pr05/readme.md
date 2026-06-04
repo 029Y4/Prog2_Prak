@@ -42,7 +42,7 @@ $\rightarrow$ iEC3a entspricht iEC3a
 
 - __Anmerkung:__ in Test Case 4 muss sichergestellt werden, dass die pendingOrder im Shop vom __gleichen__ Kunden stammt, der die neue Order aufgeben möchte.
 
-### [__A2.2 Mocking I__](029Y4/prog2_ybel_cyclechronicles/blob/test/shop-tests/src/test/java/cyclechronicles/ShopMockingTest.java)
+### [__A2.2 Mocking I__](https://github.com/029Y4/prog2_ybel_cyclechronicles/blob/test/shop-tests/src/test/java/cyclechronicles/ShopMockingTest.java)
 
 
 ## 3. [Mocking](a03.md)
