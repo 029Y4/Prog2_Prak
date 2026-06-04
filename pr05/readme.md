@@ -6,42 +6,43 @@
 
 ## 2. [Äquivalenzklassen & Grenzwerte - Cycle Chronicles](a02.md)
 
-### <u>A2.1 Analyse der Äquivalenzklassen & Grenzwerte</u>
+### __A2.1 Analyse der Äquivalenzklassen & Grenzwerte__
 
 #### __Äquivalenzklassen:__
 
 
 | Input | valid EC | invalid EC |
 |-|-|-|
-bicycleType | vEC1 = { RACE , SINGLE_SPEED , FIXIE } | iEC1.1 = GRAVEL <br> iEC1.2 = EBIKE
-Customer.pendingOrder | vEC2 = { false } | iEC2 = { true }
-Shop.pendingOrders | vEC3 = [ 0 , 4 ] | iEC3 = [ 5 , $\infty$ ]
+|bicycleType | vEC1 = { RACE , SINGLE_SPEED , FIXIE } | iEC1.1 = GRAVEL <br> iEC1.2 = EBIKE|
+|Customer.pendingOrder | vEC2 = { false } | iEC2 = { true }|
+|Shop.pendingOrders | vEC3 = [ 0 , 4 ] | iEC3 = [ 5 , $\infty$ ]|
 
 #### __Grenzwerte:__
 
 |Input|valid EC|invalid EC|
 |-|-|-|
-Shop.pendingOrders | vEC3b = 0<br> vEC3a = 4  | iEC3a = 5 <br> iEC3b = 6 
+|Shop.pendingOrders | vEC3b = 0<br> vEC3a = 4  | iEC3a = 5| 
 
-<br>
 
 - xECYa = above
 - xECYb = below
 
-<br>
-
-$\rightarrow$ iEC3 wird durch iEC3a repräsentiert
+$\rightarrow$ iEC3a entspricht iEC3a
 
 
 #### __Test:__
 
-|Test Case #|1|2|3|4|5|6|7|8|
-|-|-|-|-|-|-|-|-|-|
-Tested EC #|vECs 1, 2, 3|iEC1.1|iEC1.2|iEC2|vEC3b|vEC3a|iEC3b|iEC3a
-bicycleType|__RACE__|__GRAVEL__|__EBIKE__|FIXIE|FIXIE|FIXIE|FIXIE|FIXIE
-Customer.pendingOrder|__false__|false|false|__true__|false|false|false|false
-Shop.pendingOrders|__1__|2|3|4|__0__|__4__|__5__|__6__
-Expected Result|true|false|false|false|true|true|false|Exception
+|Test Case #|1|2|3|4|5|6|7|
+|-|-|-|-|-|-|-|-|
+|Tested EC #|vECs 1, 2, 3|iEC1.1|iEC1.2|iEC2|vEC3b|vEC3a|iEC3|
+|bicycleType|__RACE__|__GRAVEL__|__EBIKE__|FIXIE|FIXIE|FIXIE|FIXIE|
+|Customer.pendingOrder|__false__|false|false|__true__|false|false|false|
+|Shop.pendingOrders|__2__|0|0|1|__0__|__4__|__5__|
+|Expected Result|true|false|false|false|true|true|false|
+
+- __Anmerkung:__ in Test Case 4 muss sichergestellt werden, dass die pendingOrder im Shop vom __gleichen__ Kunden stammt, der die neue Order aufgeben möchte.
+
+### [__A2.2 Mocking I__](029Y4/prog2_ybel_cyclechronicles/blob/test/shop-tests/src/test/java/cyclechronicles/ShopMockingTest.java)
 
 
 ## 3. [Mocking](a03.md)
