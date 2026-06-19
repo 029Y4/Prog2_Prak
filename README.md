@@ -9,3 +9,5 @@
 ### Praktikum 04 - [ToDo...]
 
 ### Praktikum 05 - [ANTLR & Visitor Pattern | Äquivalenzklassen, Grenzwerte & Mocking](pr05/readme.md)
+
+### Praktikum 06 - [Visitor vs. Pattern Matching | Records | Approval & Property-based Testing](pr06/readme.md)
